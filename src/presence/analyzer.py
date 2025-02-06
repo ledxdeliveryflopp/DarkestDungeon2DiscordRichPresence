@@ -18,12 +18,12 @@ class LogAnalyzer:
                 system_user = game_settings.get_system_user_name()
                 logger.info(f"read log with system user: {system_user}")
                 with open(rf'C:\Users\{system_user}\AppData\LocalLow\RedHook\Darkest Dungeon II\Player.log',
-                          mode="r") as dd2_log_file:
+                          mode="r", encoding='utf-8') as dd2_log_file:
                     data = dd2_log_file.read()
                 return data
             else:
                 log_path = json_log_path.get("path")
-                with open(rf'{log_path}', mode="r") as dd2_log_file:
+                with open(rf'{log_path}', mode="r", encoding='utf-8') as dd2_log_file:
                     data = dd2_log_file.read()
                 return data
         except Exception as exc:
