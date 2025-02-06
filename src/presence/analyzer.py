@@ -1,3 +1,5 @@
+import time
+
 from loguru import logger
 
 from src.presence.const import EnemyConst, LocationConst
@@ -11,18 +13,24 @@ class LogAnalyzer:
     def __get_log_data() -> str:
         """Чтение лога"""
         json_log_path = game_settings.get_log_path()
-        if not json_log_path:
-            system_user = game_settings.get_system_user_name()
-            logger.info(f"read log with system user: {system_user}")
-            with open(rf'C:\Users\{system_user}\AppData\LocalLow\RedHook\Darkest Dungeon II\Player.log',
-                      mode="r") as dd2_log_file:
-                data = dd2_log_file.read()
-            return data
-        else:
-            log_path = json_log_path.get("path")
-            with open(rf'{log_path}', mode="r") as dd2_log_file:
-                data = dd2_log_file.read()
-            return data
+        try:
+            if not json_log_path:
+                system_user = game_settings.get_system_user_name()
+                logger.info(f"read log with system user: {system_user}")
+                with open(rf'C:\Users\{system_user}\AppData\LocalLow\RedHook\Darkest Dungeon II\Player.log',
+                          mode="r") as dd2_log_file:
+                    data = dd2_log_file.read()
+                return data
+            else:
+                log_path = json_log_path.get("path")
+                with open(rf'{log_path}', mode="r") as dd2_log_file:
+                    data = dd2_log_file.read()
+                return data
+        except Exception as exc:
+            logger.error(f"error while read dd2 log: {exc}")
+            logger.info("close application")
+            time.sleep(10)
+            exit()
 
     def get_game_state(self) -> str:
         """Получения состояния игры"""
