@@ -1,0 +1,20 @@
+[project]
+name = "dd2richpresence"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "ledxDeliveryFlopp",email = "korstim18@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "pypresence @ git+https://github.com/qwertyquerty/pypresence.git",
+    "loguru (>=0.7.3,<0.8.0)",
+    "nuitka (>=2.6.4,<3.0.0)",
+    "psutil (>=6.1.1,<7.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
