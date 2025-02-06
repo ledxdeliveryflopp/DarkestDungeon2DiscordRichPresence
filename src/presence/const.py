@@ -75,12 +75,16 @@ class LocationConst:
     """Названия локаций и их код"""
     locations_embark: dict = {"embark_camp_tundra": {"location_name": "Тундре", "location_code": "tundra"},
                               "embark_kingdom_tundra": {"location_name": "Тундре", "location_code": "tundra"},
+
                               "embark_kingdom_farm": {"location_name": "Смрадью", "location_code": "farm"},
                               "embark_camp_farm": {"location_name": "Смрадью", "location_code": "farm"},
+
                               "embark_kingdom_coast": {"location_name": "Морготью", "location_code": "coast"},
                               "embark_camp_coast": {"location_name": "Морготью", "location_code": "coast"},
+
                               "embark_camp_forest": {"location_name": "Чернолесью", "location_code": "forest"},
                               "embark_kingdom_forest": {"location_name": "Чернолесью", "location_code": "forest"},
+
                               "embark_kingdom_city": {"location_name": "Поградью", "location_code": "city"},
                               "embark_camp_city": {"location_name": "Поградью", "location_code": "city"}}
 
