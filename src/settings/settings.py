@@ -10,6 +10,7 @@ class GameSettings:
     global_game_mode: str = "main"
 
     @staticmethod
+    @logger.catch
     def get_log_path() -> Any | None:
         """получение пути к лог файлу из json"""
         try:
@@ -21,6 +22,7 @@ class GameSettings:
             return None
 
     @staticmethod
+    @logger.catch
     def get_system_user_name() -> str | None:
         """получение имени текущего пользователя в ОС"""
         try:
@@ -37,8 +39,10 @@ class GameSettings:
         """получение режима игры"""
         return self.global_game_mode
 
-    def set_global_game_mod(self, mode: str) -> None:
+    @logger.catch
+    def set_global_game_mod(self, mode: str, state: str) -> None:
         """установка режима игры"""
+        logger.info(f"update global game mode, state - {state}, mode - {mode}")
         self.global_game_mode = mode
 
 
