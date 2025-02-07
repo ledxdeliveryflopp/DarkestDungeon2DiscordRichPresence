@@ -10,6 +10,7 @@ class LogAnalyzer:
     """Класс для получения информации из лога"""
 
     @staticmethod
+    @logger.catch
     def __get_log_data() -> str:
         """Чтение лога"""
         json_log_path = game_settings.get_log_path()
@@ -32,6 +33,17 @@ class LogAnalyzer:
             time.sleep(10)
             exit()
 
+    @logger.catch
+    def set_global_game_mode(self, log_split: list, game_state: str) -> None:
+        """Установка режима игры"""
+        game_mode_kingdoms = [string for string in log_split if
+                              "KingdomMapCameraBhv" in string]
+        if game_state == "MAIN_MENU" and game_settings.get_global_game_mod != "main":
+            game_settings.set_global_game_mod("main", game_state)
+        elif game_mode_kingdoms and game_settings.get_global_game_mod == "main" and game_state != "MAIN_MENU":
+            game_settings.set_global_game_mod("kingdoms", game_state)
+
+    @logger.catch
     def get_game_state(self) -> str:
         """Получения состояния игры"""
         log_data = self.__get_log_data()
@@ -40,40 +52,59 @@ class LogAnalyzer:
                            "Entering game mode" in string]
         game_state_len = len(game_state_list) - 1
         game_state = game_state_list[game_state_len].split(" ")[3]
-        if game_state != "MAIN_MENU":
-            game_mode_kingdoms = [string for string in log_split if
-                                  "KingdomMapCameraBhv" in string]
-            if game_mode_kingdoms:
-                game_settings.set_global_game_mod("kingdoms")
-        else:
-            game_settings.set_global_game_mod("main")
+        self.set_global_game_mode(log_split, game_state)
         return game_state
 
+    @staticmethod
+    @logger.catch
+    def get_embark_location(log_split: list) -> dict | None:
+        """Получение название локации по Embark"""
+        locations_list_embark = [string for string in log_split if
+                                 "Embark: finished load scene" in string]
+        if not locations_list_embark:
+            return None
+        locations_len = len(locations_list_embark) - 1
+        location_code = locations_list_embark[locations_len].split(" ")[5]
+        embark_location_data = LocationConst.locations_embark.get(location_code)
+        if embark_location_data:
+            return embark_location_data
+        else:
+            logger.info(f"cant find location in embark dict, embark code: {location_code}")
+            return None
+
+    @staticmethod
+    @logger.catch
+    def get_fog_location(log_split: list) -> dict | None:
+        """Получение название локации по FogSystem"""
+        locations_list_fog = [string for string in log_split if
+                              "FogSystem" in string]
+        if not locations_list_fog:
+            return None
+        locations_len = len(locations_list_fog) - 1
+        location_code = locations_list_fog[locations_len].split(" ")[9]
+        fog_location_data = LocationConst.locations_fog.get(location_code)
+        if fog_location_data:
+            return fog_location_data
+        else:
+            logger.info(f"cant find location in fog dict, fog code: {location_code}")
+            return None
+
+    @logger.catch
     def get_location(self) -> dict | None:
         """Получение названия и кода текущей локации"""
         log_data = self.__get_log_data()
         log_split = log_data.split("\n")
-        locations_list_embark = [string for string in log_split if
-                                 "Embark: finished load scene" in string]
-        if locations_list_embark:
-            locations_len = len(locations_list_embark) - 1
-            location_code = locations_list_embark[locations_len].split(" ")[5]
-            location_data = LocationConst.locations_embark.get(location_code)
-            return location_data
+        embark_location = self.get_embark_location(log_split)
+        if embark_location:
+            return embark_location
         else:
-            locations_list_fog = [string for string in log_split if
-                                  "FogSystem" in string]
-            if locations_list_fog:
-                locations_len = len(locations_list_fog) - 1
-                location_code = locations_list_fog[locations_len].split(" ")[9]
-                location_data = LocationConst.locations_fog.get(location_code)
-                return location_data
+            fog_location = self.get_fog_location(log_split)
+            if fog_location:
+                return fog_location
             else:
-                logger.info("cant find location in dict")
-                logger.info(f"embark location: {locations_list_embark}")
-                logger.info(f"fog location: {locations_list_fog}")
                 return None
 
+    @logger.catch
     def get_enemy(self) -> dict | None:
         """Получение типа врагов и их код"""
         log_data = self.__get_log_data()
@@ -88,6 +119,7 @@ class LogAnalyzer:
         if enemy_data:
             return enemy_data
         else:
+            logger.info(f"cant find enemy in enemy dict, enemy code: {enemy_code}")
             return None
 
 
