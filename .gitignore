@@ -166,3 +166,10 @@ dd2-rich-presence.log
 main.build
 main.dist
 main.onefile-build
+
+# compiled files
+dd2DRP_with_console.exe
+dd2DRP_no_console.exe
+
+# app settings
+settings.json
