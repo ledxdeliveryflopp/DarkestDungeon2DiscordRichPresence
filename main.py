@@ -17,8 +17,8 @@ def start_application() -> None:
         else:
             logger.info("cant find dd2 process, check again after 60 sec")
             time.sleep(60)
-    logger.info("dd2 started, wait 30 sec")
-    time.sleep(30)
+    logger.info("dd2 started, wait 15 sec")
+    time.sleep(15)
     rpc_service.connect_to_discord_rpc()
 
 
@@ -26,6 +26,7 @@ if __name__ == '__main__':
     logger.add(rf"dd2-rich-presence.log", rotation="100 MB",
                format="{time:DD-MM-YYYY at HH:mm:ss} | {level} | {message}")
     start_application()
+    logger.info("start update precence")
     while True:
         check_dd2_run()
         presence_service.set_presence()
