@@ -170,6 +170,7 @@ main.onefile-build
 # compiled files
 dd2DRP_with_console.exe
 dd2DRP_no_console.exe
+main.exe
 
 # app settings
 settings.json
