@@ -9,6 +9,7 @@ class StateConst:
 class EnemyConst:
     """Названия врагов(группы врагов по техническому названию) и их код"""
     enemy: dict = {"fanatic_flayer": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
+                   "fanatic_flayer_b": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
                    "fanatic_flayer_ignited": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
                    "fanatic_flayer_corpse": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
                    "fanatic_immolatist_b": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
@@ -16,6 +17,7 @@ class EnemyConst:
                    "fanatic_pit_fighter": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
                    "fanatic_whipper_corpse": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
                    "fanatic_whipper": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
+                   "fanatic_whipper_b": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
                    "fanatic_whipper_ignited": {"enemy_name": "Изуверами", "enemy_code": "fanatic"},
 
                    "cultist_altar": {"enemy_name": "Культистами", "enemy_code": "cultist"},
@@ -27,7 +29,9 @@ class EnemyConst:
                    "shared_barricade_spearman": {"enemy_name": "Солдатами", "enemy_code": "military"},
 
                    "plague_eater_livestock": {"enemy_name": "Несытями", "enemy_code": "plague"},
+                   "plague_eater_livestock_b": {"enemy_name": "Несытями", "enemy_code": "plague"},
                    "plague_eater_maid": {"enemy_name": "Несытями", "enemy_code": "plague"},
+                   "plague_eater_maid_b": {"enemy_name": "Несытями", "enemy_code": "plague"},
                    "plague_eater_butcher_b": {"enemy_name": "Несытями", "enemy_code": "plague"},
                    "plague_eater_butcher": {"enemy_name": "Несытями", "enemy_code": "plague"},
                    "plague_eater_dinner_cart": {"enemy_name": "Несытями", "enemy_code": "plague"},
@@ -61,9 +65,11 @@ class EnemyConst:
 
                    "lost_battalion_foot_soldier": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"},
                    "lost_battalion_knight": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"},
+                   "lost_battalion_knight_b": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"},
                    "lost_battalion_bishop": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"},
                    "lost_battalion_drummer": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"},
-                   "lost_battalion_arbalist": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"}}
+                   "lost_battalion_arbalist": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"},
+                   "lost_battalion_arbalist_b": {"enemy_name": "Кадаврами", "enemy_code": "cadaver"}}
 
 
 class ImagesConst:
