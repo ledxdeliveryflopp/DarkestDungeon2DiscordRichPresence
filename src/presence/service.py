@@ -44,13 +44,10 @@ class DD2PresenceService:
             builded_state = f"{translated_state} с {enemy_name}"
             rpc_service.update(activity_type=ActivityType.PLAYING, state=builded_state, start=self.saved_time,
                                large_image=game_mode_image, small_image=enemy_code, small_text=enemy_code)
-            logger.info(f"set COMBAT presence with this data: {enemy_data}")
         else:
             builded_state = f"{translated_state} с неизвестным врагом"
-            logger.info(f"builded state for combat: {builded_state}")
             rpc_service.update(activity_type=ActivityType.PLAYING, state=builded_state, start=self.saved_time,
                                large_image=game_mode_image)
-            logger.info("set COMBAT presence without enemy data")
 
     def set_driving_presence(self, game_mode_image: str, translated_state: str) -> None:
         """установка присутствия передвижения по локации"""
@@ -61,17 +58,13 @@ class DD2PresenceService:
             builded_state = f"{translated_state} {location_name}"
             rpc_service.update(activity_type=ActivityType.PLAYING, state=builded_state, start=self.saved_time,
                                large_image=game_mode_image, small_image=location_code, small_text=location_code)
-            logger.info(f"set DRIVE presence with this data: {location_data}")
         else:
             builded_state = f"{translated_state} неизвестной локации"
-            logger.info(f"builded state for driving: {builded_state}")
             rpc_service.update(activity_type=ActivityType.PLAYING, state=builded_state, start=self.saved_time,
                                large_image=game_mode_image)
-            logger.info("set DRIVE presence without location data")
 
     def set_basic_state(self, game_mode_image: str, translated_state: str) -> None:
         """установка присутствия не требующего доп информации"""
-        logger.info(f"set basic state: {translated_state}")
         rpc_service.update(activity_type=ActivityType.PLAYING, state=translated_state, start=self.saved_time,
                            large_image=game_mode_image)
 
