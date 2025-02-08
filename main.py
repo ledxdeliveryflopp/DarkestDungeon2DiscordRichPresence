@@ -4,6 +4,7 @@ from loguru import logger
 
 from src.presence.service import presence_service
 from src.rpc.service import rpc_service
+from src.settings.settings import game_settings
 from src.settings.utils import check_dd2_run_in_start, check_dd2_run
 
 
@@ -20,6 +21,7 @@ def start_application() -> None:
     logger.info("dd2 started, wait 15 sec")
     time.sleep(15)
     rpc_service.connect_to_discord_rpc()
+    game_settings.set_settings()
 
 
 if __name__ == '__main__':
