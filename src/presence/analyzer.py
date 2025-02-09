@@ -1,3 +1,4 @@
+import sys
 import time
 
 from loguru import logger
@@ -14,22 +15,14 @@ class LogAnalyzer:
         """Чтение лога"""
         log_path = game_settings.get_log_path
         try:
-            if not log_path:
-                system_user = game_settings.get_system_user_name()
-                logger.info(f"read log with system user: {system_user}")
-                with open(rf'C:\Users\{system_user}\AppData\LocalLow\RedHook\Darkest Dungeon II\Player.log',
-                          mode="r", encoding='utf-8') as dd2_log_file:
-                    data = dd2_log_file.read()
-                return data
-            else:
-                with open(rf'{log_path}', mode="r", encoding='utf-8') as dd2_log_file:
-                    data = dd2_log_file.read()
-                return data
+            with open(rf'{log_path}', mode="r", encoding='utf-8') as dd2_log_file:
+                data = dd2_log_file.read()
+            return data
         except Exception as exc:
             logger.error(f"error while read dd2 log: {exc}")
             logger.info("close application")
             time.sleep(10)
-            exit()
+            sys.exit()
 
     @logger.catch
     def set_global_game_mode(self, log_split: list, game_state: str) -> None:
