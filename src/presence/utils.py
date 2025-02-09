@@ -65,16 +65,17 @@ class StateBuilder:
         """Получение названия локации на нужном языке"""
         if location_code:
             location_data_embark: dict = LocationConst.locations_embark.get(location_code)
-            location_data_fog: dict = LocationConst.locations_fog.get(location_code)
             if location_data_embark:
                 translated_location_embark = location_data_embark.get(game_settings.get_presence_lang)
                 if translated_location_embark:
                     return translated_location_embark
             else:
                 logger.info(f"cant find embark location in location embark dict, location embark code: {location_code}")
-                translated_location_fog = location_data_fog.get(game_settings.get_presence_lang)
-                if translated_location_fog:
-                    return translated_location_fog
+                location_data_fog: dict = LocationConst.locations_fog.get(location_code)
+                if location_data_fog:
+                    translated_location_fog = location_data_fog.get(game_settings.get_presence_lang)
+                    if translated_location_fog:
+                        return translated_location_fog
                 else:
                     logger.info(f"cant find fog location in location fog dict, location fog code: {location_code}")
                     return None
