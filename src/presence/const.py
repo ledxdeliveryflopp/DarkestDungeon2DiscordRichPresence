@@ -8,7 +8,8 @@ class StateConst:
                     "COMBAT": {"ru": "В бою с", "en": "In battle against"},
                     "RESULTS": {"ru": "Просматривает результаты боя", "en": "Views the results of the battle"},
                     "INN": {"ru": "В трактире", "en": "in the inn"},
-                    "EMBARK": {"ru": "начинает путешествие", "en": "Embark"}}
+                    "EMBARK": {"ru": "начинает путешествие", "en": "Embark"},
+                    "HERO_SELECT": {"ru": "Выбирает героев", "en": "Chooses heroes"}}
 
 
 class ProposalConst:
@@ -120,4 +121,7 @@ class LocationConst:
                                                                    "location_code": "forest"},
 
                            "driving_city_environment_lighting": {"ru": "Поградью", "en": "Sprawl",
-                                                                 "location_code": "city"}}
+                                                                 "location_code": "city"},
+
+                           "driving_valley_environment_lighting": {"ru": "Долине", "en": "Valley",
+                                                                   "location_code": "valley"}}
