@@ -9,7 +9,7 @@ from src.settings.utils import check_dd2_run_in_start, check_dd2_run
 
 
 def start_application() -> None:
-    """ожидание запуска DD2 и подлючение к Discord rpc"""
+    """ожидание запуска DD2/проверка лога DD2/подлючение к Discord rpc"""
     dd2_status = False
     while dd2_status is False:
         update_dd2_status = check_dd2_run_in_start()
@@ -20,8 +20,8 @@ def start_application() -> None:
             time.sleep(60)
     logger.info("dd2 started, wait 15 sec")
     time.sleep(15)
-    rpc_service.connect_to_discord_rpc()
     game_settings.set_settings()
+    rpc_service.connect_to_discord_rpc()
 
 
 if __name__ == '__main__':
