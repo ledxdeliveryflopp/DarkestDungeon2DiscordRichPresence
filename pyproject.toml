@@ -14,6 +14,9 @@ dependencies = [
     "pypresence @ https://github.com/qwertyquerty/pypresence/archive/master.zip"
 ]
 
+[tool.poetry.group.test.dependencies]
+pypresence = "(>=4.3.0,<5.0.0)"
+
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
