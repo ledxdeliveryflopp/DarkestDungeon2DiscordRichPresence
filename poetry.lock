@@ -192,16 +192,15 @@ name = "pypresence"
 version = "4.3.0"
 description = "Discord RPC client written in Python"
 optional = false
-python-versions = ">=3.12,<4.0"
+python-versions = ">=3.8"
 groups = ["main"]
-files = []
-develop = false
+files = [
+    {file = "master.zip", hash = "sha256:7648c8baead21cdb345a285ec67e849109a3f7ec7cd9053fd8b9bb17141eb4d6"},
+]
 
 [package.source]
-type = "git"
-url = "https://github.com/qwertyquerty/pypresence.git"
-reference = "HEAD"
-resolved_reference = "f856ccaaeb2321f64f9692b75dc3ceda5c927f42"
+type = "url"
+url = "https://github.com/qwertyquerty/pypresence/archive/master.zip"
 
 [[package]]
 name = "win32-setctime"
@@ -335,4 +334,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "e2d1897f395df1a0694d5ac4bbb020ce60fd0c7a0766512da2694c1c6a82458b"
+content-hash = "bd96fcbdf124aaeb903d57e94a2868c9f6394692f62310dfb26bfa4254804f27"
